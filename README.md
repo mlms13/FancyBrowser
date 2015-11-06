@@ -1,4 +1,4 @@
-# Fancy Browser Helper
+# Fancy Browser
 
 This is a collection of DOM helpers, keyboard keycodes, and more (but not much more) for Haxe. Think of it as jQuery, but without most of the features and with none of the cross-browser normalization. Mostly, this provides some helpful extension methods on top of `js.html.Element` in Haxe.
 

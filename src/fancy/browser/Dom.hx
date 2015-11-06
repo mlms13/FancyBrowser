@@ -1,4 +1,4 @@
-package fancy.search.util;
+package fancy.browser;
 
 import js.Browser.document as document;
 import js.html.Element;
