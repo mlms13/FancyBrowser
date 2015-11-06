@@ -1,0 +1,11 @@
+{
+  "name" : "fancybrowser",
+  "url" : "https://github.com/mlms13/FancyBrowser",
+  "license" : "MIT",
+  "classPath" : "src",
+  "tags" : ["browser", "js", "utility", "dom"],
+  "description" : "A small utility toolkit for working with browsers",
+  "releasenote" : "",
+  "version" : "0.0.1",
+  "contributors" : ["mlms13"]
+}
