@@ -45,8 +45,6 @@ class Dom {
 
     var el = document.createElement(name);
     for (att in Reflect.fields(attrs)) {
-      trace(att);
-      trace(Reflect.field(attrs, att));
       el.setAttribute(att, Reflect.field(attrs, att));
     }
 
