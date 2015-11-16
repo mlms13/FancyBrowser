@@ -3,6 +3,7 @@ package fancy.browser;
 import js.Browser.document as document;
 import js.html.Element;
 import js.html.Event;
+import js.html.Node;
 
 class Dom {
   public static function hasClass(el : Element, className : String) {
@@ -28,7 +29,7 @@ class Dom {
     return el;
   }
 
-  public static function create(name : String, ?attrs : Dynamic<Dynamic>, ?children : Array<Element>, ?textContent : String) : Element {
+  public static function create(name : String, ?attrs : Dynamic<Dynamic>, ?children : Array<Node>, ?textContent : String) : Element {
     if (attrs == null) {
       attrs = {};
     }
