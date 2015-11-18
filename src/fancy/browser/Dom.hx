@@ -4,6 +4,7 @@ import js.Browser.document as document;
 import js.html.Element;
 import js.html.Event;
 import js.html.Node;
+using thx.Arrays;
 
 class Dom {
   public static function hasClass(el : Element, className : String) {
@@ -62,13 +63,40 @@ class Dom {
     return el;
   }
 
-  public static function insertChildAtIndex(el : Element, child : Element, index : Int) {
+  public static function insertAtIndex(el : Element, child : Element, index : Int) {
     el.insertBefore(child, el.children[index]);
     return el;
   }
 
-  public static function prependChild(el : Element, child : Element) {
-    return insertChildAtIndex(el, child, 0);
+  static function prependChild(el : Element, child : Element) {
+      return insertAtIndex(el, child, 0);
+  }
+
+  static function prependChildren(el : Element, children : Array<Element>) : Element {
+    return children.reduceRight(prependChild, el);
+  }
+
+  public static function prepend(el : Element, ?child : Element, ?children : Array<Element>) : Element {
+    if (child != null)
+      prependChild(el, child);
+
+    return prependChildren(el, children != null ? children : []);
+  }
+
+  static function appendChild(el : Element, child : Element) : Element {
+    el.appendChild(child);
+    return el;
+  }
+
+  static function appendChildren(el : Element, children : Array<Element>) : Element {
+    return children.reduce(appendChild, el);
+  }
+
+  public static function append(el : Element, ?child : Element, ?children : Array<Element>) {
+    if (child != null)
+      appendChild(el, child);
+
+    return appendChildren(el, children != null ? children : []);
   }
 
   public static function empty(el : Element) {
