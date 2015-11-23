@@ -30,7 +30,12 @@ class Dom {
     return el;
   }
 
-  public static function create(name : String, ?attrs : Dynamic<Dynamic>, ?children : Array<Node>, ?textContent : String) : Element {
+  public static function off(el : Element, eventName : String, callback : Event -> Void) {
+    el.removeEventListener(eventName, callback);
+    return el;
+  }
+
+  public static function create(name : String, ?attrs : Dynamic<Dynamic>, ?children : Array<Element>, ?textContent : String) : Element {
     if (attrs == null) {
       attrs = {};
     }
