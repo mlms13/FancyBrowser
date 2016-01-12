@@ -68,36 +68,36 @@ class Dom {
     return el;
   }
 
-  public static function insertAtIndex(el : Element, child : Element, index : Int) {
+  public static function insertAtIndex(el : Element, child : Node, index : Int) {
     el.insertBefore(child, el.children[index]);
     return el;
   }
 
-  static function prependChild(el : Element, child : Element) {
+  static function prependChild(el : Element, child : Node) {
       return insertAtIndex(el, child, 0);
   }
 
-  static function prependChildren(el : Element, children : Array<Element>) : Element {
+  static function prependChildren(el : Element, children : Array<Node>) : Element {
     return children.reduceRight(prependChild, el);
   }
 
-  public static function prepend(el : Element, ?child : Element, ?children : Array<Element>) : Element {
+  public static function prepend(el : Element, ?child : Node, ?children : Array<Node>) : Element {
     if (child != null)
       prependChild(el, child);
 
     return prependChildren(el, children != null ? children : []);
   }
 
-  static function appendChild(el : Element, child : Element) : Element {
+  static function appendChild(el : Element, child : Node) : Element {
     el.appendChild(child);
     return el;
   }
 
-  static function appendChildren(el : Element, children : Array<Element>) : Element {
+  static function appendChildren(el : Element, children : Array<Node>) : Element {
     return children.reduce(appendChild, el);
   }
 
-  public static function append(el : Element, ?child : Element, ?children : Array<Element>) {
+  public static function append(el : Element, ?child : Node, ?children : Array<Node>) : Element {
     if (child != null)
       appendChild(el, child);
 
