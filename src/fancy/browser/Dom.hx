@@ -5,6 +5,7 @@ import js.html.Element;
 import js.html.Event;
 import js.html.Node;
 using thx.Arrays;
+using thx.Iterators;
 
 class Dom {
   public static function hasClass(el : Element, className : String) {
@@ -35,15 +36,15 @@ class Dom {
     return el;
   }
 
-  public static function create(name : String, ?attrs : Dynamic<Dynamic>, ?children : Array<Element>, ?textContent : String) : Element {
+  public static function create(name : String, ?attrs : Map<String, String>, ?children : Array<Element>, ?textContent : String) : Element {
     if (attrs == null) {
-      attrs = {};
+      attrs = new Map();
     }
     if (children == null) {
       children = [];
     }
 
-    var classNames = Reflect.hasField(attrs, 'class') ? Reflect.field(attrs, 'class') : '';
+    var classNames = attrs.exists('class') ? attrs.get('class') : '';
     var nameParts = name.split('.');
     name = nameParts.shift();
 
@@ -51,9 +52,11 @@ class Dom {
       classNames += ' ' + nameParts.join(' ');
 
     var el = document.createElement(name);
-    for (att in Reflect.fields(attrs)) {
-      el.setAttribute(att, Reflect.field(attrs, att));
-    }
+
+    attrs.keys().reduce(function (acc : Element, key : String) {
+      acc.setAttribute(key, attrs.get(key));
+      return acc;
+    }, el);
 
     el.className = classNames;
 
